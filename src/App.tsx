@@ -25,10 +25,63 @@ function App() {
     return () => clearInterval(interval);
   }, [aircraftApiUrl]);
 
+  // get the first 8
+  const aircraftToShow = [
+    ...aircraft,
+    {
+      hex: "000000",
+      type: "Aircraft",
+      flight: "ACA1030",
+      alt_baro: 10000,
+      gs: 100,
+      track: 100,
+    },
+    {
+      hex: "000000",
+      type: "Aircraft",
+      flight: "ACA1030",
+      alt_baro: 10000,
+      gs: 100,
+      track: 100,
+    },
+    {
+      hex: "000000",
+      type: "Aircraft",
+      flight: "ACA1030",
+      alt_baro: 10000,
+      gs: 100,
+      track: 100,
+    },
+    {
+      hex: "000000",
+      type: "Aircraft",
+      flight: "ACA1030",
+      alt_baro: 10000,
+      gs: 100,
+      track: 100,
+    },
+    {
+      hex: "000000",
+      type: "Aircraft",
+      flight: "ACA1030",
+      alt_baro: 10000,
+      gs: 100,
+      track: 100,
+    },
+    {
+      hex: "000000",
+      type: "Aircraft",
+      flight: "ACA1030",
+      alt_baro: 10000,
+      gs: 100,
+      track: 100,
+    },
+  ].slice(0, 8);
+
   return (
     <FlightboardContainer>
       <FlightsList>
-        {aircraft.map((aircraft) => (
+        {aircraftToShow.map((aircraft) => (
           <FlightStrip key={aircraft.hex} aircraft={aircraft} />
         ))}
       </FlightsList>
