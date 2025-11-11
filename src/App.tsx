@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { FlightboardContainer, FlightsList } from "./styles";
 import type { Aircraft, AircraftResponse } from "./types";
+import { FlightboardContainer, FlightsList, Header, Footer } from "./styles";
+import AirplaneIcon from "@/assets/airplane.svg?react";
 import FlightStrip from "@/components/flight-strip";
 import { calculateDistanceInKm } from "@/helpers/distance";
 import { OUR_COORDINATES } from "@/constants/location";
@@ -48,15 +49,29 @@ function App() {
     return distanceA - distanceB;
   });
 
-  const aircraftToShow = sortedAircraft.slice(0, 8);
+  const aircraftToShow = sortedAircraft.slice(0, 6);
 
   return (
     <FlightboardContainer>
+      <Header>
+        <div>
+          <AirplaneIcon />
+          <h1>Flightboard</h1>
+        </div>
+        <div>
+          <span>{aircraft.length} aircraft</span>
+        </div>
+      </Header>
       <FlightsList>
         {aircraftToShow.map((aircraft) => (
           <FlightStrip key={aircraft.hex} aircraft={aircraft} />
         ))}
       </FlightsList>
+      <Footer>
+        <span>Showing aircraft sorted by nearest distance</span>
+        <span>•</span>
+        <span>{new Date().toLocaleTimeString()}</span>
+      </Footer>
     </FlightboardContainer>
   );
 }

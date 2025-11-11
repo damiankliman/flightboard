@@ -5,16 +5,18 @@ export const FlightStripContainer = styled.div`
   height: 60px;
   display: flex;
   padding: 10px;
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-
-  &:not(:last-child) {
-    border-bottom: none;
-  }
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 
   &:first-child {
     border-top: none;
+  }
+
+  &:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  &:nth-child(n + 6) {
+    border-bottom: none;
   }
 
   > div:nth-child(1) {
