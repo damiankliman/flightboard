@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { FlightboardContainer, FlightsList } from "./styles";
 import type { Aircraft, AircraftResponse } from "./types";
-import FlightStrip from "./components/flight-strip";
+import FlightStrip from "@/components/flight-strip";
+import { calculateDistanceInKm } from "@/helpers/distance";
+import { OUR_COORDINATES } from "@/constants/location";
 
 const FLIGHT_DATA_REFRESH_INTERVAL = 1000;
 
@@ -25,58 +27,29 @@ function App() {
     return () => clearInterval(interval);
   }, [aircraftApiUrl]);
 
-  // get the first 8
-  const aircraftToShow = [
-    ...aircraft,
-    {
-      hex: "000000",
-      type: "Aircraft",
-      flight: "ACA1030",
-      alt_baro: 10000,
-      gs: 100,
-      track: 100,
-    },
-    {
-      hex: "000001",
-      type: "Aircraft",
-      flight: "ACA1030",
-      alt_baro: 10000,
-      gs: 100,
-      track: 100,
-    },
-    {
-      hex: "000002",
-      type: "Aircraft",
-      flight: "ACA1030",
-      alt_baro: 10000,
-      gs: 100,
-      track: 100,
-    },
-    {
-      hex: "000003",
-      type: "Aircraft",
-      flight: "ACA1030",
-      alt_baro: 10000,
-      gs: 100,
-      track: 100,
-    },
-    {
-      hex: "000004",
-      type: "Aircraft",
-      flight: "ACA1030",
-      alt_baro: 10000,
-      gs: 100,
-      track: 100,
-    },
-    {
-      hex: "000005",
-      type: "Aircraft",
-      flight: "ACA1030",
-      alt_baro: 10000,
-      gs: 100,
-      track: 100,
-    },
-  ].slice(0, 8);
+  const sortedAircraft = [...aircraft].sort((a, b) => {
+    const distanceA =
+      a.lat && a.lon
+        ? calculateDistanceInKm(
+            OUR_COORDINATES.lat,
+            OUR_COORDINATES.lon,
+            a.lat,
+            a.lon
+          )
+        : Infinity;
+    const distanceB =
+      b.lat && b.lon
+        ? calculateDistanceInKm(
+            OUR_COORDINATES.lat,
+            OUR_COORDINATES.lon,
+            b.lat,
+            b.lon
+          )
+        : Infinity;
+    return distanceA - distanceB;
+  });
+
+  const aircraftToShow = sortedAircraft.slice(0, 8);
 
   return (
     <FlightboardContainer>

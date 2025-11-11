@@ -18,16 +18,19 @@ export const FlightStripContainer = styled.div`
   }
 
   > div:nth-child(1) {
-    width: 25%;
+    width: 30%;
   }
   > div:nth-child(2) {
-    width: 20%;
+    width: 16%;
   }
   > div:nth-child(3) {
-    width: 20%;
+    width: 16%;
   }
   > div:nth-child(4) {
-    width: 20%;
+    width: 16%;
+  }
+  > div:nth-child(5) {
+    width: 22%;
   }
 `;
 
