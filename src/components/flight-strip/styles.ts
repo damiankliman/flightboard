@@ -3,9 +3,7 @@ import styled from "styled-components";
 export const FlightStripContainer = styled.div`
   width: 100%;
   height: 60px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 10px;
+  display: flex;
   padding: 10px;
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -17,6 +15,19 @@ export const FlightStripContainer = styled.div`
 
   &:first-child {
     border-top: none;
+  }
+
+  > div:nth-child(1) {
+    width: 25%;
+  }
+  > div:nth-child(2) {
+    width: 20%;
+  }
+  > div:nth-child(3) {
+    width: 20%;
+  }
+  > div:nth-child(4) {
+    width: 20%;
   }
 `;
 

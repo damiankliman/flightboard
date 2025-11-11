@@ -37,7 +37,7 @@ function App() {
       track: 100,
     },
     {
-      hex: "000000",
+      hex: "000001",
       type: "Aircraft",
       flight: "ACA1030",
       alt_baro: 10000,
@@ -45,7 +45,7 @@ function App() {
       track: 100,
     },
     {
-      hex: "000000",
+      hex: "000002",
       type: "Aircraft",
       flight: "ACA1030",
       alt_baro: 10000,
@@ -53,7 +53,7 @@ function App() {
       track: 100,
     },
     {
-      hex: "000000",
+      hex: "000003",
       type: "Aircraft",
       flight: "ACA1030",
       alt_baro: 10000,
@@ -61,7 +61,7 @@ function App() {
       track: 100,
     },
     {
-      hex: "000000",
+      hex: "000004",
       type: "Aircraft",
       flight: "ACA1030",
       alt_baro: 10000,
@@ -69,7 +69,7 @@ function App() {
       track: 100,
     },
     {
-      hex: "000000",
+      hex: "000005",
       type: "Aircraft",
       flight: "ACA1030",
       alt_baro: 10000,
