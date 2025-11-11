@@ -19,7 +19,6 @@ function App() {
         .then((data: AircraftResponse) => setAircraft(data.aircraft));
     };
 
-    // get flight data every second
     const interval = setInterval(() => {
       fetchAircraft();
     }, FLIGHT_DATA_REFRESH_INTERVAL);
