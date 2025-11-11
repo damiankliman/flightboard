@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { FlightboardContainer, FlightsList } from "./styles";
+import type { Aircraft, AircraftResponse } from "./types";
+import FlightStrip from "./components/flight-strip";
+
+const FLIGHT_DATA_REFRESH_INTERVAL = 1000;
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [aircraft, setAircraft] = useState<Aircraft[]>([]);
+  const aircraftApiUrl =
+    import.meta.env.VITE_ADSB_DATA_API_URL || "http://localhost";
+
+  useEffect(() => {
+    const fetchAircraft = async () => {
+      fetch(`${aircraftApiUrl}/tar1090/data/aircraft.json`)
+        .then((response) => response.json())
+        .then((data: AircraftResponse) => setAircraft(data.aircraft));
+    };
+
+    // get flight data every second
+    const interval = setInterval(() => {
+      fetchAircraft();
+    }, FLIGHT_DATA_REFRESH_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, [aircraftApiUrl]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <FlightboardContainer>
+      <FlightsList>
+        {aircraft.map((aircraft) => (
+          <FlightStrip key={aircraft.hex} aircraft={aircraft} />
+        ))}
+      </FlightsList>
+    </FlightboardContainer>
+  );
 }
 
-export default App
+export default App;
