@@ -33,14 +33,14 @@ export const Header = styled.div`
   }
 
   svg {
-    color: #9ad4e2;
-    fill: #9ad4e2;
+    color: #8fddef;
+    fill: #8fddef;
     width: 30px;
     height: 30px;
   }
 
   h1 {
-    color: #9ad4e2;
+    color: #8fddef;
     font-size: 32px;
     margin: 0;
   }
